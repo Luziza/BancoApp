@@ -1,3 +1,5 @@
+import 'package:banco/contatosform.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +22,13 @@ class Contatos extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Get.to(ContactsForm())!.then((result){
+            if (result != null) {
+              // Aqui você pode lidar com o resultado, como por exemplo:
+              print('O novo contato é: $result');
+            }});
+        },
         child: Icon(Icons.add),
       ),
     );

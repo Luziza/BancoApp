@@ -20,17 +20,18 @@ class Dashboard extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor,
             ),
             onPressed: () {
-              Get.to(() => Contatos());
+              Get.to(Contatos());
             },
             child: Container(
               padding: const EdgeInsets.all(21.0),
-              width: 400,
-              height: 100,
-              child: Column(
-                children: [
-                  Icon(Icons.people, color: Colors.white,size: 30,),
-                  Text("Contatos", style: TextStyle(color: Colors.white, fontSize: 20),),
-                ],
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Icon(Icons.people, color: Colors.white,size: 30,),
+                    Text("Contatos", style: TextStyle(color: Colors.white, fontSize: 20),),
+                  ],
+                ),
               ),
             ),
           ),
