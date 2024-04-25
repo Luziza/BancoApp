@@ -20,7 +20,7 @@ class Dashboard extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor,
             ),
             onPressed: () {
-              Get.to(Contatos());
+              Get.to(() => Contatos());
             },
             child: Container(
               padding: const EdgeInsets.all(21.0),

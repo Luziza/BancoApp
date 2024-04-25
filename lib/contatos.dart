@@ -6,14 +6,24 @@ import 'package:get/get.dart';
 
 import 'models/contact.dart';
 
-class Contatos extends StatelessWidget {
+class Contatos extends StatefulWidget {
   Contatos({super.key});
 
+  @override
+  State<Contatos> createState() => _ContatosState();
+}
 
+class _ContatosState extends State<Contatos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Contatos'),),
+      appBar: AppBar(
+        actions: [IconButton(onPressed: () {
+          setState(() {});
+        }, icon: Icon(Icons.refresh, color: Colors.green))
+      ],
+        title: Text('Contatos'),
+      ),
       body: FutureBuilder<List<Contact>>(
         future: findAll(),
         builder: (context, snapshot){
@@ -55,19 +65,14 @@ class Contatos extends StatelessWidget {
         },
 
       ),
-      
-
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Get.to(ContactsForm())!.then((result){
-            if (result != null) {
-              // Aqui você pode lidar com o resultado, como por exemplo:
-              print('O novo contato é: $result');
-            }});
-        },
-        child: Icon(Icons.add),
-      ),
-    );
+          Get.to(() => ContactsForm());
+          setState(() {});
+            },
+    child: Icon(Icons.add),
+    ),
+      );
   }
 }
 

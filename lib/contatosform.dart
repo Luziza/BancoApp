@@ -59,7 +59,8 @@ class _ContactsFormState extends State<ContactsForm> {
                       // Ela retorna um Future que, quando concluído, retorna o id do contato salvo.
                       // O método then() é utilizado para executar uma ação após a conclusão do Future,
                       // que no caso é a navegação de volta para a lista de contatos
-                      Save(newContact).then( (id) => Get.back(result: context));
+                      Save(newContact).then( (id) => Get.back());
+
                     },
                     child: Text('Salvar')),
               ),
