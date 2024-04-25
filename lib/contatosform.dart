@@ -3,6 +3,8 @@ import 'package:banco/models/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'database/app_database.dart';
+
 class ContactsForm extends StatefulWidget {
   const ContactsForm({super.key});
 
@@ -49,12 +51,15 @@ class _ContactsFormState extends State<ContactsForm> {
                       backgroundColor: Theme.of(context).primaryColor
                     ),
                     onPressed: () {
-                      //Pega as informações
+                      //Pega as informações dos controllers
                       final nome = _nomeController.text;
                       final numero = int.parse(_numeroController.text);
+                      //cria um novo contato
                       final Contact newContact = Contact(0, nome, numero);
-                      //envia os dados para a página anterior
-                      Get.back(result: newContact);
+                      // Ela retorna um Future que, quando concluído, retorna o id do contato salvo.
+                      // O método then() é utilizado para executar uma ação após a conclusão do Future,
+                      // que no caso é a navegação de volta para a lista de contatos
+                      Save(newContact).then( (id) => Get.back(result: context));
                     },
                     child: Text('Salvar')),
               ),

@@ -26,3 +26,19 @@ Future<int> Save(Contact contact){
     return db.insert('contacts', contactMap);
   });
 }
+
+Future<List<Contact>> findAll(){
+  //Vai ter acesso ao db
+  return createDatabase().then((db){
+    //vai pegar todos os dados dessa tabela
+    return db.query('contacts').then((maps){
+      //pega cada mapa e converte para o contato, cria a lista e insere as informações do mapa dentro
+      final List<Contact> contacts = [];
+      for (Map<String, dynamic> map in maps){
+        final Contact contact = Contact(map['id'], map['nome'], map['numero']);
+        contacts.add(contact);
+      }
+      return contacts;
+    });
+  });
+}
